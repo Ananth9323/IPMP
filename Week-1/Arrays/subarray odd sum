@@ -1,0 +1,25 @@
+link:https://leetcode.com/problems/number-of-sub-arrays-with-odd-sum/description/
+
+class Solution {
+public:
+    
+    int numOfSubarrays(vector<int>& nums) {
+        int even=1,odd=0,sum=0,ans=0,mod=1e9+7;
+        for(auto &i: nums){
+            sum+=i;
+            if(sum%2){
+                odd++;
+                ans=(ans+even)%mod;
+            }
+            else{
+                even++;
+                ans=(ans+odd)%mod;
+            }
+        }
+        return ans;
+    }
+
+    
+};
+
+concept used:prefix sum
