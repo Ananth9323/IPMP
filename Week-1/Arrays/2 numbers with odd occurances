@@ -1,0 +1,31 @@
+class Solution{
+    public:
+    vector<long long int> twoOddNum(long long int Arr[], long long int n)  
+    {  
+        vector<long long int> ans;
+        int x=0,y=0;
+        int set_bit_no;
+        int xor1=0;
+        
+        for(int i=0;i<n;i++){
+            xor1=xor1^Arr[i];
+        }
+        
+        set_bit_no = xor1&~(xor1-1);
+        for(int i=0;i<n;i++){
+            if(Arr[i]&set_bit_no){
+                x=x^Arr[i];
+            }
+            else{
+                y=y^Arr[i];
+            }
+        }
+        if(x>y){ans.push_back(x);ans.push_back(y);}
+        else{ans.push_back(y);ans.push_back(x);}
+        return ans;
+    }
+};
+
+link:https://practice.geeksforgeeks.org/problems/two-numbers-with-odd-occurrences5846/1?utm_source=gfg&utm_medium=article&utm_campaign=bottom_sticky_on_article
+
+concept used:XOR.
