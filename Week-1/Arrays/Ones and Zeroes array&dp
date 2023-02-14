@@ -1,0 +1,54 @@
+class Solution {
+public:
+    int dp[601][101][101];
+    int findMaxForm(vector<string>& strs, int m, int n) {
+        
+        memset(dp,-1,sizeof(dp));
+        return solve(strs,m,n,0,0,0);
+
+
+    }
+
+    int solve(vector<string>& strs, int maxzero, int maxone, int i, int m, int n){
+        if(i>=strs.size())return 0;
+
+        if(m>maxzero || n>maxone)return 0;
+
+        if(dp[i][m][n]!=-1)return dp[i][m][n];
+
+        pair<int,int> p=countzeroone(strs[i]);
+
+        int ans1=0,ans2=0,answithout=0;
+
+        if(m+p.first<=maxzero && n+p.second<=maxone){
+            ans1=1+solve(strs,maxzero,maxone,i+1,m+p.first,n+p.second);
+
+            ans2=solve(strs,maxzero,maxone,i+1,m,n);
+
+        }
+        else{
+            answithout=solve(strs,maxzero,maxone,i+1,m,n);
+        }
+
+        return dp[i][m][n]=max({ans1,ans2,answithout});
+        
+    }
+
+    pair<int,int> countzeroone(string s){
+        int zero=0,one=0;
+        for(int i=0;i<s.size();i++){
+            if(s[i]=='1'){
+                one++;
+            }
+            else{
+                zero++;
+            }
+        }
+        return {zero,one};
+    }
+};
+
+
+link:https://leetcode.com/problems/ones-and-zeroes/description/
+
+concept used: recursion + memoization(dynamic programming) for array of string. 
