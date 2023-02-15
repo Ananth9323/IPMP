@@ -1,0 +1,32 @@
+class Solution {
+public:
+    vector<int> intersection(vector<int>& nums1, vector<int>& nums2) {
+        vector<int> ans;
+        unordered_map<int,int> m1;
+        unordered_map<int,int> m2;
+        for(auto i:nums1){
+            if(m1.find(1)==m1.end()){
+                m1.insert({i,1});
+            }
+            else{
+                m1[i]++;
+            }
+        }
+        for(auto i:nums2){
+            if(m2.find(1)==m2.end()){
+                m2.insert({i,1});
+            }
+            else{
+                m2[i]++;
+            }
+        }
+        for(auto i:m1){
+            if(m2.find(i.first)!=m2.end())ans.push_back(i.first);
+
+        }
+        return ans;
+
+    }
+};
+
+link:https://leetcode.com/problems/intersection-of-two-arrays/description/
