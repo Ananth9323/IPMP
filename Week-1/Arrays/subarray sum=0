@@ -1,0 +1,26 @@
+   bool subArrayExists(int arr[], int n)
+    {
+        unordered_set<int> s;
+        int sum=0;
+        for(int i=0;i<n;i++){
+            sum+=arr[i];
+            if(s.find(sum)!=s.end()){
+                return true;
+            }
+            if(s.find(sum)==s.end()){
+                s.insert(sum);
+            }
+            if(sum==0 ){
+                return true;
+            }
+            
+        }
+        if(sum==0)return true;
+        return false;
+    }
+};
+
+
+link:https://practice.geeksforgeeks.org/problems/subarray-with-0-sum-1587115621/1?utm_source=gfg&utm_medium=article&utm_campaign=bottom_sticky_on_article
+
+logic:if prefix sum is already present in set then subarray having zero sum is present
