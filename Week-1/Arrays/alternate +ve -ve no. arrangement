@@ -1,0 +1,30 @@
+class Solution {
+public:
+    vector<int> rearrangeArray(vector<int>& nums) {
+        vector<int> pos;
+        vector<int> neg;
+        vector<int> ans;
+        for(auto i:nums){
+            if(i>0){
+                pos.push_back(i);
+            }
+            else{
+                neg.push_back(i);
+            }
+        }
+
+        int i=0;
+        for( i=0;i<nums.size()/2;i++){
+            ans.push_back(pos[i]);
+            ans.push_back(neg[i]);
+
+        }
+        if(i!=pos.size()){
+            ans.push_back(pos[i]);
+        }
+        return ans;
+    }
+};
+
+link:https://leetcode.com/problems/rearrange-array-elements-by-sign/description/
+
