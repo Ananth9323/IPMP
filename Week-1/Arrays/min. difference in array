@@ -1,0 +1,21 @@
+class Solution {
+public:
+    vector<vector<int>> minimumAbsDifference(vector<int>& nums) {
+        vector<vector<int>> ans;
+        sort(nums.begin(),nums.end());
+        int mindif=INT_MAX;
+        for(int i=0;i<nums.size()-1;i++){
+            if(abs(nums[i]-nums[i+1])<mindif){
+                mindif=abs(nums[i]-nums[i+1]);
+            }
+        }
+        for(int i=0;i<nums.size()-1;i++){
+            if(abs(nums[i]-nums[i+1])==mindif){
+                ans.push_back({nums[i],nums[i+1]});
+            }
+        }
+        return ans;
+    }
+};
+
+link:https://leetcode.com/problems/minimum-absolute-difference/description/
