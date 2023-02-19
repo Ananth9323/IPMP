@@ -1,0 +1,33 @@
+Initial solution://passed 31/108 test cases and then gave time limit exceeded 
+
+class Solution {
+public:
+    bool checkInclusion(string s1, string s2) {
+        if(s2.size()<s1.size())return false;
+        string answer="";
+        set<string> s;
+        permutations(s1,answer,s);
+        for(int i=0;i<=(s2.size()-s1.size());i++){
+            if(s.find(s2.substr(i,s1.size()))!=s.end()){
+                return true;
+            }
+        }
+        return false;
+    }
+
+    void permutations(string str,string answer, set<string>& s){
+        if(str.length()==0){
+            s.insert(answer);
+        }
+
+        for(int i=0;i<str.length();i++){
+            char ch=str[i];
+            string rest=str.substr(0,i)+str.substr(i+1);
+            permutations(rest,answer+ch,s);
+        }
+    }
+};
+
+
+
+
