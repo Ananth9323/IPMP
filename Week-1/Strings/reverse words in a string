@@ -1,0 +1,32 @@
+class Solution {
+public:
+    string reverseWords(string s) {
+        stringstream ss(s);
+        deque<string> dq;
+        string ans="";
+        string ans2="";
+        while(ss.good()){
+            string substr;
+            getline(ss,substr,' ');
+            dq.push_front(substr);
+            
+        }
+        while(!dq.empty()){
+            ans+=dq.front();
+            dq.pop_front();
+            ans+=' ';
+        }
+        stringstream sss(ans);
+        string word;
+        while(sss>>word){
+            ans2+=word;
+            ans2+=" ";
+        }
+        ans2.pop_back();
+        return ans2;
+    }
+};
+
+link:https://leetcode.com/problems/reverse-words-in-a-string/description/
+
+concept used:stringstream
