@@ -1,0 +1,32 @@
+class Solution {
+public:
+    bool isAnagram(string s, string t) {
+        if(s.size()!=t.size())return false;
+        unordered_map<char,int> m1,m2;
+        for(int i=0;i<s.size();i++){
+            if(m1.find(s[i])==m1.end()){
+                m1.insert({s[i],1});
+            }
+            else{
+                m1[s[i]]++;
+            }
+        }
+        for(int i=0;i<t.size();i++){
+            if(m2.find(t[i])==m2.end()){
+                m2.insert({t[i],1});
+            }
+            else{
+                m2[t[i]]++;
+            }
+        }
+        for(auto i:m1){
+            if(m2.find(i.first)==m2.end())return false;
+            else if(m2[i.first]!=i.second)return false;
+        }
+        return true;
+    }
+};
+
+link:https://leetcode.com/problems/valid-anagram/description/
+
+concept used:check no. of occurances of each character in both strings. if they are same for all characters then valid anagram.
