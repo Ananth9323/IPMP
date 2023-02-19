@@ -1,0 +1,20 @@
+class Solution {
+  public:
+    string removeChars(string string1, string string2) {
+        unordered_set<char> s;
+        for(int i=0;i<string2.size();i++){
+        
+                s.insert(string2[i]);
+           
+        }
+        string ans="";
+        for(int i=0;i<string1.size();i++){
+            if(s.find(string1[i])==s.end()){
+                ans.push_back(string1[i]);
+            }
+        }
+        return ans;
+    }
+};
+
+link:https://practice.geeksforgeeks.org/problems/remove-character3815/1
