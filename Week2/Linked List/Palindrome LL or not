@@ -1,0 +1,21 @@
+class Solution {
+public:
+bool ans=true;
+ListNode *head2;
+    bool isPalindrome(ListNode* head) {
+        head2=head;
+        pali(head);
+        return ans;
+    }
+
+    void pali(ListNode* head){
+        if(head==NULL)return;
+
+        pali(head->next);
+
+        if(head2->val !=head->val)ans=false;
+        head2=head2->next;
+    }
+};
+
+link:https://leetcode.com/problems/palindrome-linked-list/description/
