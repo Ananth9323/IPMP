@@ -1,0 +1,39 @@
+class Solution {
+public:
+    ListNode* rotateRight(ListNode* head, int k) {
+         if (!head || !head->next || k == 0)
+        return head;
+    ListNode* temp = head;
+    ListNode* curr = head;
+    ListNode* headN = head;
+    int n = 0;
+    
+    while (temp) {
+        temp = temp->next;
+        n++;
+    }
+    
+    int shift = (n - k % n) - 1;
+    
+    while (shift) {
+        curr = curr->next;
+        shift--;
+    }
+    
+    ListNode* KthNode = curr;
+
+    while (curr->next)
+        curr = curr->next;
+    
+    curr->next = head;
+    headN = KthNode->next;
+    KthNode->next = NULL;
+    
+    return headN;
+}
+
+    
+
+};
+
+link:https://leetcode.com/problems/rotate-list/
