@@ -1,0 +1,27 @@
+class Solution
+{
+    public:
+    //Function to remove a loop in the linked list.
+    void removeLoop(Node* head)
+    {
+        if(!head || !head->next)return;
+        unordered_map<Node*,int> m;
+        bool ans;
+        while(1){
+            if(head==NULL){return;}
+
+            else{
+                if(m.find(head->next)!=m.end()){
+                    head->next=NULL;
+                }
+                else{
+                    m[head]++;
+                }
+            }
+            head=head->next;
+        }
+        
+    }
+};
+
+link:https://practice.geeksforgeeks.org/problems/remove-loop-in-linked-list/1?utm_source=gfg&utm_medium=article&utm_campaign=bottom_sticky_on_article
