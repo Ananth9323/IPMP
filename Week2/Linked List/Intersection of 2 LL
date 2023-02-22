@@ -1,0 +1,21 @@
+class Solution {
+public:
+    ListNode *getIntersectionNode(ListNode *HeadA, ListNode *HeadB) {
+        ListNode *headA=HeadA, *headB=HeadB;
+        while(headA!=headB){
+            if(headA==NULL){
+                headA=HeadB;
+            }
+            else headA=headA->next;
+            if(headB==NULL){
+                headB=HeadA;
+            }
+            else
+            headB=headB->next;
+
+        }
+        return headA;
+    }
+};
+
+link:https://leetcode.com/problems/intersection-of-two-linked-lists/description/
