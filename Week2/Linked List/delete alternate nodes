@@ -1,0 +1,15 @@
+void deleteAlt(struct Node *head){
+    if(!head)return;
+    
+    Node *n=head->next;
+    
+    if(!n)return;
+    
+    head->next=n->next;
+    
+    free(n);
+    
+    deleteAlt(head->next);
+}
+
+link:https://practice.geeksforgeeks.org/problems/delete-alternate-nodes/1?utm_source=gfg&utm_medium=article&utm_campaign=bottom_sticky_on_article
