@@ -1,0 +1,28 @@
+struct Node* makeUnion(struct Node* head1, struct Node* head2)
+{
+    set<int> s;
+    Node *p1=head1, *p2=head2;
+    while(p1 || p2){
+        if(p1){
+            s.insert(p1->data);
+            p1=p1->next;
+        }
+        if(p2){
+            s.insert(p2->data);
+            p2=p2->next;
+        }
+    }
+    
+    
+    vector<int> v(s.begin(),s.end());
+    Node* head=new Node(v[0]);
+    Node *temp = head;
+    for(int i=1;i<v.size();i++){
+        temp->next=new Node(v[i]);
+        temp=temp->next;
+    }
+    return head;
+    
+}
+
+link:https://practice.geeksforgeeks.org/problems/union-of-two-linked-list/1?utm_source=gfg&utm_medium=article&utm_campaign=bottom_sticky_on_article
