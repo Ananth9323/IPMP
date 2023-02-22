@@ -1,0 +1,25 @@
+class Solution {
+public:
+    bool hasCycle(ListNode *head) {
+        if(!head || !head->next)return false;
+        unordered_map<ListNode*,int> m;
+        bool ans;
+        while(1){
+            if(head==NULL){ans=false;break;}
+
+            else{
+                if(m.find(head)!=m.end()){
+                    ans=true;
+                    break;
+                }
+                else{
+                    m[head]++;
+                }
+            }
+            head=head->next;
+        }
+        return ans;
+    }
+};
+
+link:https://leetcode.com/problems/linked-list-cycle/description/
