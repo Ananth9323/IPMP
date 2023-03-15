@@ -1,0 +1,21 @@
+public:
+    //Function to return the sorted array.
+    vector<int> nearlySorted(int arr[], int num, int K){
+        vector<int> ans;
+        priority_queue<int, vector<int>, greater<int>> pq(arr, arr+K+1);
+        for(int i=K+1;i<num;i++){
+            ans.push_back(pq.top());
+            pq.pop();
+            pq.push(arr[i]);
+        }
+        while(!pq.empty()){
+            ans.push_back(pq.top());
+            pq.pop();
+        }
+        return ans;
+        
+    }
+    
+    link:https://practice.geeksforgeeks.org/problems/nearly-sorted-1587115620/1?utm_source=gfg&utm_medium=article&utm_campaign=bottom_sticky_on_article
+    
+    logic: create a min priority queue with first k elements and everytime add top element in ans vector, pop pq and push new element from input array into pq.
