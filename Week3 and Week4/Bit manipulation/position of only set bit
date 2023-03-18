@@ -1,0 +1,16 @@
+class Solution {
+  public:
+    int findPosition(int N) {
+        int count=0,n=N;
+        while(n){
+            n=n&(n-1);
+            count++;
+        }
+        if(count==1){
+            return log2(N & -N)+1;
+        }
+        else return -1;
+    }
+};
+
+link:https://practice.geeksforgeeks.org/problems/find-position-of-set-bit3706/1?utm_source=gfg&utm_medium=article&utm_campaign=bottom_sticky_on_article
