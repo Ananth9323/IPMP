@@ -1,0 +1,37 @@
+class Solution {
+    int findMinIndex(const vector<int>& nums) {
+        int low = 0;
+        int high = nums.size()-1;
+        while(high - low > 1)
+        {
+            int middle = (high + low)/2;
+            if(nums[middle] < nums[high])
+                high = middle;
+            else
+                low = middle;
+        }
+        if(nums.size() > 0 and nums[low] < nums[high])
+            return low;
+        else
+            return high;
+    }
+
+    int binarysearch(const vector<int>& nums, int low, int high, int target){
+        if(low>high)return -1;
+        int mid=(low+high)/2;
+        if(nums[mid]==target)return mid;
+        if(nums[mid]>target)return binarysearch(nums,low,mid-1,target);
+        return binarysearch(nums,mid+1,high,target);
+    }
+    
+public:
+    int search(vector<int>& nums, int target) {
+        int pivot=findMinIndex(nums);
+        if(nums[pivot]==target)return pivot;
+        int ans1=binarysearch(nums,0,pivot-1,target);
+        int ans2=binarysearch(nums,pivot+1,nums.size()-1,target);
+        return max(ans1,ans2);    
+    }
+};
+
+link:https://leetcode.com/problems/search-in-rotated-sorted-array/description/
