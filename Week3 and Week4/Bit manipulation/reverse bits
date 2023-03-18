@@ -1,0 +1,15 @@
+class Solution {
+public:
+    uint32_t reverseBits(uint32_t n) {
+        uint32_t x=0;
+        int d=0;
+        while(n){
+            x+=(n%2)<<(31-d);
+            n/=2;//or n>>=1
+            d++;
+        }
+        return x;
+    }
+};
+
+link:https://leetcode.com/problems/reverse-bits/description/
