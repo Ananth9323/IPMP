@@ -1,0 +1,17 @@
+class Solution
+{
+    public:
+    //Function to swap odd and even bits.
+    unsigned int swapBits(unsigned int n)
+    {
+    	unsigned int evenbits=n & 0xAAAAAAAA;
+    	
+    	unsigned int oddbits=n & 0x55555555;
+    	
+    	evenbits>>=1;
+    	oddbits<<=1;
+    	return evenbits|oddbits;
+    }
+};
+
+link:https://practice.geeksforgeeks.org/problems/swap-all-odd-and-even-bits-1587115621/1?utm_source=gfg&utm_medium=article&utm_campaign=bottom_sticky_on_article
