@@ -16,3 +16,10 @@ public:
 };
 
 link:https://leetcode.com/problems/counting-bits/description/
+
+another solution:
+count=0
+while(n){
+    n=n&(n-1);
+    count++
+}
