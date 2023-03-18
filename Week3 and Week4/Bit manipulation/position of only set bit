@@ -13,4 +13,16 @@ class Solution {
     }
 };
 
+another solution:
+
+class Solution {
+  public:
+    int findPosition(int n) {
+        if(n==0)return -1;
+        
+        if((n&(n-1))==0)return log2(n & -n)+1;
+        else return -1;
+    }
+};
+
 link:https://practice.geeksforgeeks.org/problems/find-position-of-set-bit3706/1?utm_source=gfg&utm_medium=article&utm_campaign=bottom_sticky_on_article
