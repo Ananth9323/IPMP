@@ -1,0 +1,47 @@
+class MyQueue {
+public:
+stack<int> s1,s2;
+    MyQueue() {
+        
+    }
+    
+    void push(int x) {
+        s1.push(x);
+
+    }
+    
+    int pop() {
+        while(s1.size()!=1){
+            s2.push(s1.top());
+            s1.pop();
+        }
+        int top=s1.top();
+        s1.pop();
+        while(s2.size()){
+            s1.push(s2.top());
+            s2.pop();
+        }
+        return top;
+    }
+    
+    int peek() {
+        while(s1.size()!=1){
+            s2.push(s1.top());
+            s1.pop();
+        }
+        int top=s1.top();
+        s2.push(s1.top());
+        s1.pop();
+        while(s2.size()){
+            s1.push(s2.top());
+            s2.pop();
+        }
+        return top;
+    }
+    
+    bool empty() {
+        return s1.empty();
+    }
+};
+
+link:https://leetcode.com/problems/implement-queue-using-stacks/description/
