@@ -1,0 +1,19 @@
+class Solution {
+public:
+    vector<string> buildArray(vector<int>& target, int n) {
+        sort(target.begin(),target.end());
+        vector<string> ans;
+        for(int i=1;i<=min(n,target[target.size()-1]);i++){
+            if(find(target.begin(),target.end(),i)!=target.end()){
+                ans.push_back("Push");
+            }
+            else{
+                ans.push_back("Push");
+                ans.push_back("Pop");
+            }
+        }
+        return ans;
+    }
+};
+
+link:https://leetcode.com/problems/build-an-array-with-stack-operations/description/
