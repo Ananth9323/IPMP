@@ -1,0 +1,29 @@
+class Solution {
+public:
+    int integerReplacement(int n) {
+
+      int ans=0;
+      if(n==INT_MAX){
+          ans=0;
+          n-=1;
+      }
+        while(n!=1){
+          if(n%2==0){
+              n/=2;
+              ans++;
+              continue;
+          }
+          else if((n+1)%4==0 && n+1!=4){
+              n+=1;
+              ans++;
+              continue;
+          }
+          else{
+              n-=1;
+              ans++;
+              continue;
+          }
+        }
+        return ans;
+    }
+};
