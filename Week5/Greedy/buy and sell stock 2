@@ -1,0 +1,19 @@
+class Solution {
+public:
+//use greedy here
+    int maxProfit(vector<int>& prices) {
+        int mn=0,i,ans=0;
+        for(i=1;i<prices.size();i++){
+            if(prices[mn]>=prices[i]){
+                mn=i;
+            }
+            else{
+                ans+=prices[i]-prices[mn];
+                mn=i;
+            }
+        }
+        return ans;
+    }
+};
+
+link:https://leetcode.com/problems/best-time-to-buy-and-sell-stock-ii/description/
