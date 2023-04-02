@@ -1,0 +1,31 @@
+class Solution {
+public:
+    bool isPossible(vector<int>& nums) {
+        unordered_map<int,int> freq;
+        for(int i:nums){
+            freq[i]++;
+        }
+        unordered_map<int,int> need;
+        for(int i:nums){
+            if(freq[i]==0)continue;
+
+            if(need[i]>0){
+                freq[i]--;
+                need[i]--;
+                need[i+1]++;
+            }
+
+            else if(freq[i]>0 && freq[i+1]>0 && freq[i+2]>0){
+                freq[i]--;
+                freq[i+1]--;
+                freq[i+2]--;
+                need[i+3]++;
+            }
+            else return false;
+        }
+        return true;
+        
+    }
+};
+
+link:https://leetcode.com/problems/split-array-into-consecutive-subsequences/description/
