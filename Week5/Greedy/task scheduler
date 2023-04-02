@@ -1,0 +1,21 @@
+class Solution {
+public:
+    int leastInterval(vector<char>& tasks, int n) {
+        if(n==0)return tasks.size();
+        unordered_map<char,int> mp;
+        int count=INT_MIN;
+        for(auto i:tasks){
+            mp[i]++;
+            count=max(count,mp[i]);
+        }
+        int max_freq_characters=0;
+        for(auto i:mp){
+            if(i.second==count)max_freq_characters++;
+        }
+        int ans=(n+1)*(count-1)+max_freq_characters;
+        return max(ans,(int)tasks.size());
+        //see solution section for better understanding 
+    }
+};
+
+link:https://leetcode.com/problems/task-scheduler/description/
