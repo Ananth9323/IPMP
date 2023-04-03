@@ -1,0 +1,31 @@
+class Solution {
+public:
+    int monotoneIncreasingDigits(int n) {
+        int ind,flag=0;
+        string s=to_string(n);;
+        while(1){
+            flag=0;
+            
+            int len=s.size();
+            for(int i=0;i<len-1;i++){
+                if(s[i]<=s[i+1])continue;
+                else{
+                    ind=i;
+                    string ans="";
+                    for(int j=0;j<len-1-ind;j++){
+                        ans+="9";
+                    }
+                    s=s.substr(0,ind)+(--s[ind])+ans;
+                    flag=1;
+                }
+            }
+            if(flag==0){
+                break;
+            }
+        }
+        int ans1=stoi(s);
+        return ans1;
+    }
+};
+
+link:https://leetcode.com/problems/monotone-increasing-digits/description/
