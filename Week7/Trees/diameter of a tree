@@ -1,0 +1,19 @@
+class Solution {
+public:
+    int res=0;
+    int helper(TreeNode* root){
+        if(!root)return 0;
+        int l=helper(root->left);
+        int r=helper(root->right);
+        res=max(res,l+r);
+        return 1+max(l,r);
+    }
+
+    
+    int diameterOfBinaryTree(TreeNode* root) {
+        int a=helper(root);
+        return res;
+    }
+};
+
+link:https://leetcode.com/problems/diameter-of-binary-tree/description/
