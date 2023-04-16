@@ -1,0 +1,17 @@
+void doubleTree(node* Node)
+{
+    node* oldLeft;
+     
+    if (Node == NULL) return;
+     
+    /* do the subtrees */
+    doubleTree(Node->left);
+    doubleTree(Node->right);
+     
+    /* duplicate this node to its left */
+    oldLeft = Node->left;
+    Node->left = newNode(Node->data);
+    Node->left->left = oldLeft;
+}
+
+link:https://www.geeksforgeeks.org/double-tree/
