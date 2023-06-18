@@ -1,0 +1,29 @@
+class Solution {
+public:
+    map<vector<int>, int> dp;
+    int mod=1e9+7;
+    int findPaths(int m, int n, int maxMove, int startRow, int startColumn) {
+        return helper(startRow, startColumn, m, n, maxMove);
+    }
+
+    int helper(int r, int c, int m, int n, int k){
+        int out=0;
+        if(k==0){
+            if(r>=m || c>=n || r<0 || c<0)out++;
+            return out;
+        }
+
+        if(r>=m || c>=n || r<0 || c<0)return ++out;
+
+        vector<int> v={r,c,k};
+        if(dp.find(v)!=dp.end())return dp[v];
+        vector<int> delrow={-1,0,1,0};
+        vector<int> delcol={0,1,0,-1};
+        for(int i=0;i<4;i++){
+            int nr=r+delrow[i];
+            int nc=c+delcol[i];
+            out=(out+helper(nr,nc,m,n,k-1))%mod;
+        }
+        return dp[v]=out%mod;
+    }
+};
