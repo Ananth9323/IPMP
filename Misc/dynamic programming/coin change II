@@ -1,0 +1,18 @@
+class Solution {
+public:
+    int dp[301][5001];
+    int change(int amount, vector<int>& coins) {
+        memset(dp,-1,sizeof dp);
+        return helper(amount,coins,coins.size()-1);
+    }
+
+    int helper(int amount, vector<int>& coins, int i){
+        if(amount<0)return 0;
+        if(amount==0)return 1;
+       
+        if(i<0)return 0;
+         if(dp[i][amount]!=-1)return dp[i][amount];
+
+        return dp[i][amount]=helper(amount,coins,i-1)+helper(amount-coins[i],coins,i);
+    }
+};
