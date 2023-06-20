@@ -1,0 +1,68 @@
+class Solution {
+public: 
+    TreeNode* deleteNode(TreeNode* root, int key) {
+        if(!root)return root;
+        if(root->val==key){
+            if(!root->left && !root->right)return NULL;
+            else if(root->right){
+                TreeNode * last=root->right;
+                while(last->left !=NULL){
+                    last=last->left;
+                }
+                last->left=root->left;
+                return root->right;
+            }
+            else{
+                return root->left;
+            }
+        }
+        TreeNode *parent=search(root,key);
+        if(!parent)return root;
+        TreeNode *target;
+        if(parent->left && parent->left->val==key)target=parent->left;
+        else{
+            target=parent->right;
+        }
+        if(!target->left && !target->right){
+            if(target==parent->left){
+                parent->left=NULL;
+            }
+            else{
+                parent->right=NULL;
+            }
+        }
+        else if(target->right){
+            TreeNode * last=target->right;
+            while(last->left !=NULL){
+                last=last->left;
+            }
+            if(target==parent->left){
+                last->left=target->left;
+                parent->left=target->right;
+            }
+            else{
+                last->left=target->left;
+                parent->right=target->right;
+            }
+        }
+        else{
+            if(target==parent->left){
+               
+                parent->left=target->left;
+            }
+            else{
+                
+                parent->right=target->left;
+            }
+        }
+
+        return root;
+    }
+
+    TreeNode* search(TreeNode* root, int key){
+        if(!root)return NULL;
+        if(root->left &&root->left->val==key || root->right && root->right->val==key)return root;
+        if(root->val>key)return search(root->left, key);
+        else return search(root->right, key);
+
+    }
