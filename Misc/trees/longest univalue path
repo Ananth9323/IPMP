@@ -1,0 +1,19 @@
+class Solution {
+public:
+    int longestUnivaluePath(TreeNode* root) {
+        if(!root)return 0;
+        int dis=0;
+        height(root,dis);
+        return dis;
+    }
+
+    int height(TreeNode *root, int &dis){
+        if(!root)return 0;
+        int l=height(root->left, dis);
+        int r=height(root->right, dis);
+        int dl=(root->left && root->left->val==root->val)?l+1:0;
+        int dr=(root->right && root->right->val==root->val)?r+1:0;
+        dis=max(dis,dl+dr);
+        return max(dl,dr);
+    }
+};
