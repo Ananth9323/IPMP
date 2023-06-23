@@ -1,0 +1,34 @@
+class Solution {
+public:
+    vector<int> splitIntoFibonacci(string num) {
+        vector<int> vec;
+        bool flag=helper(num,0,vec);
+        if(flag==false)return {};
+        return vec;
+    }
+
+    bool helper(string num, int ind, vector<int>& vec)
+    {
+        if(ind==num.length()){
+            return vec.size()>2;
+        }
+
+        int temp=0;
+        for(int i=ind;i<num.length();i++){
+            temp=(long)temp*10 + (num[i]-'0');
+            if(temp<0)return false;
+
+            if(ind!=i && temp<=9){
+                return false;
+            }
+
+            if(vec.size()>=2 && (long)vec[vec.size()-2]+(long)vec.back()!=temp)continue;
+
+            vec.push_back(temp);
+            if(helper(num,i+1,vec))return true;
+            vec.pop_back();
+        }
+
+        return false;
+    }
+};
