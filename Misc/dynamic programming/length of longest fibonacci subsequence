@@ -1,0 +1,53 @@
+class Solution {
+public:
+    
+    int lenLongestFibSubseq(vector<int>& nums) {
+        unordered_set<int> st;
+        for(int i=0;i<nums.size();i++){
+            st.insert(nums[i]);
+        }
+        int cnt=0;
+        int maxi=INT_MIN;
+        for(int i=0;i<nums.size();i++){
+            for(int j=i+1;j<nums.size();j++){
+                int a=nums[i], b=nums[j];
+                int c=a+b;
+                cnt=2;
+                while(st.find(c)!=st.end()){
+                    cnt++;
+                    a=b;
+                    b=c;
+                    c=a+b;
+                }
+                maxi=max(maxi,cnt);
+            }
+        }
+        return maxi>2?maxi:0;
+    }
+
+    
+
+    
+};
+
+/*my solution
+int helper(vector<int>& nums, int i, int prev1, int prev2){
+        if(i==nums.size())return 0;
+
+        if(dp[i+1][prev1+1][prev2+1]!=-1)return dp[i+1][prev1+1][prev2+1];
+
+        if(prev1==-1){
+            return dp[i+1][prev1+1][prev2+1]=max((1+helper(nums,i+1,i,prev2)),helper(nums,i+1,prev1,prev2));
+        }
+        else if(prev2==-1){
+            return dp[i+1][prev1+1][prev2+1]=max((1+helper(nums,i+1,prev1,i)),helper(nums,i+1,prev1,prev2));
+        }
+
+        else{
+            if(nums[prev1]+nums[prev2]==nums[i]){
+                return dp[i+1][prev1+1][prev2+1]=max((1+helper(nums,i+1,prev2,i)),helper(nums,i+1,prev1,prev2));
+            }
+            else return dp[i+1][prev1+1][prev2+1]=helper(nums,i+1,prev1,prev2);
+        }
+    }
+*/
