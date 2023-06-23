@@ -1,0 +1,37 @@
+class Solution {
+public:
+    int dp[20001];
+    int deleteAndEarn(vector<int>& nums) {
+        memset(dp,-1,sizeof(dp));
+        sort(nums.begin(), nums.end());
+        return helper(nums,0);
+    }
+
+    int helper(vector<int>& nums, int i){
+        if(i>=nums.size())return 0;
+
+        if(dp[i]!=-1)return dp[i];
+
+        int currval=nums[i];
+        int currsum=nums[i];
+        int index=i+1;
+        
+        while(index<nums.size() && nums[index]==currval){
+            currsum+=currval;
+            index++;
+        }
+        int j=index;
+
+        while(index<nums.size() && nums[index]==currval+1){
+            index++;
+        }
+
+        return dp[i]=max(currsum+helper(nums,index),helper(nums,j));
+
+        
+
+
+
+
+    }
+};
