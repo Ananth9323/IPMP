@@ -1,0 +1,27 @@
+class Solution {
+public:
+    int lengthLongestPath(string input) {
+        int maxi=0;
+        stack<pair<int,int>> st;
+        int ind=0;
+        int n=input.size();
+        stringstream data(input);
+        string temp;
+        while(getline(data,temp,'\n')){
+            int i=0;
+            while(temp[i]=='\t')i++;
+            int num=i;
+            while(!st.empty() && st.top().first>=num)st.pop();
+
+            int prev=0;
+            if(!st.empty())prev=st.top().second+1;
+            int curr=temp.size()-num;
+            auto found=temp.find('.');
+            if(found!=std::string::npos)
+            maxi=max(maxi,curr+prev);
+            st.push({num,curr+prev});
+
+        }
+        return maxi;
+    }
+};
